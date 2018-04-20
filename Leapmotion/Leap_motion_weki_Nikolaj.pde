@@ -49,15 +49,63 @@ void leapOnExit() {
 
 
 void draw() {
-  if (currentClass == 0) {
-    background(0, 255, 0);
-  } else if (currentClass == 1) {
+
+  switch(currentClass) {
+  case 1: 
+    println("Alpha");  // Does not execute
     background(255, 0, 0);
-  } else if (currentClass == 2) {
+    break;
+  case 2: 
+    println("Bravo");  // Prints "Bravo"
+    background(0, 255, 0);
+    break;
+  case 3: 
+    println("Foxtrot");  // Prints "Bravo"
     background(0, 0, 255);
-  } else if (currentClass == 3) {
+    break;
+  case 4: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(255, 255, 0);
+    break;
+  case 5: 
+    println("Foxtrot");  // Prints "Bravo"
     background(0, 255, 255);
+    break;
+  case 6: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(255, 255, 255);
+    break;
+  case 7: 
+    println("Alpha");  // Does not execute
+    background(120, 255, 120);
+    break;
+  case 8: 
+    println("Bravo");  // Prints "Bravo"
+    background(255, 120, 255);
+    break;
+  case 9: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(20, 60, 120);
+    break;
+  case 10: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(120, 60, 20);
+    break;
+  case 11: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(55, 200, 10);
+    break;
+  case 12: 
+    println("Foxtrot");  // Prints "Bravo"
+    background(185, 25, 195);
+    break;
+
+  default:
+    println("Zulu");   // Does not execute
+    background(0, 10, 0);
+    break;
   }
+
 
   int fps = leap.getFrameRate();
   for (Hand hand : leap.getHands()) {
