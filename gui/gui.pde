@@ -1,7 +1,5 @@
-import gifAnimation.*;
 import processing.sound.*;
 
-Gif waving;
 PImage sign;
 PImage hand;
 SoundFile ok;
@@ -20,8 +18,6 @@ void setup() {
   hand = loadImage("hand.png");
   ok = new SoundFile(this, "ok.wav");
   no = new SoundFile(this, "no.wav");
-  waving = new Gif(this, "waving.gif");
-  waving.loop();
   shift = width*10;
   shift2 = 0;
 }
