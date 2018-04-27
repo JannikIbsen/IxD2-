@@ -3,7 +3,6 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
-import gifAnimation.*; 
 import processing.sound.*; 
 
 import java.util.HashMap; 
@@ -19,8 +18,6 @@ public class gui extends PApplet {
 
 
 
-
-Gif waving;
 PImage sign;
 PImage hand;
 SoundFile ok;
@@ -39,8 +36,6 @@ public void setup() {
   hand = loadImage("hand.png");
   ok = new SoundFile(this, "ok.wav");
   no = new SoundFile(this, "no.wav");
-  waving = new Gif(this, "waving.gif");
-  waving.loop();
   shift = width*10;
   shift2 = 0;
 }
