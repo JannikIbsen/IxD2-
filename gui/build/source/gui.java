@@ -86,7 +86,7 @@ public void buyState(float price) {
   textAlign(CENTER);
   text("Verificér nu", 0, 150);
   tint(255, fade);
-  image(chevron, 0, 250+cos(frames)*15, 300, 300);
+  image(chevron, 0, 275+cos(frames)*15, 300, 300);
 }
 
 public void endState(boolean succ) {

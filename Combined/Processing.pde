@@ -286,3 +286,21 @@ void oscEvent(OscMessage message) {
     println(currentClass);
   }
 }
+
+// FOR TESTING PURPOSES
+void keyPressed() {
+  switch (keyCode) {
+    case 37:
+      stateIndex--;
+      frames = 0;
+      fade   = 0;
+      break;
+    case 39:
+      stateIndex++;
+      frames = 0;
+      fade   = 0;
+      break;
+    default:
+      break;
+  }
+}
