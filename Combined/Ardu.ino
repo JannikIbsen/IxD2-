@@ -33,10 +33,10 @@ String test = "1";
          } else if(Tag2.compareTo(scannedUID) == 0){
               // an incorrect NFC tag was used
               Serial.println("1");
-              
+
          } else if(Tag3.compareTo(scannedUID) == 0){
      //     Serial.println("Gesture 3 key");
-          
+
         } else{
       //
   Serial.println("2");
