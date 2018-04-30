@@ -41,7 +41,7 @@ void draw() {
       buyState(123.45);
       break;
     case 2:
-      endState(false);
+      endState(true);
       break;
     default:
       break;
@@ -65,20 +65,26 @@ void buyState(float price) {
   fill(255, fade);
   textSize(36);
   text(price + "Kr.", -300, 0);
+  textAlign(CENTER);
+  text("Verificér nu", 0, 150);
   tint(255, fade);
-  image(chevron, 0, 250+cos(frames)*15, 300, 300);
+  image(chevron, 0, 275+cos(frames)*15, 300, 300);
 }
 
 void endState(boolean succ) {
+  textAlign(CENTER);
   tint(255, fade);
   noStroke();
   if (succ) {
-    image(goodImg, 0, 0);
+    text("Tak fordi du brugte Kinetix", 0, -100);
+    image(goodImg, 0, 100, 250, 250);
   } else {
-    image(badImg, 0, 0);
+    text("Fejl - prøv igen", 0, -100);
+    image(badImg, 0, 100, 250, 250);
   }
 }
 
+// for testing purposes
 void keyPressed() {
   switch (keyCode) {
     case 37:
