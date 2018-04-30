@@ -18,29 +18,38 @@ public class gui extends PApplet {
 
 
 
-PImage sign;
+PFont openSans;
+PImage goodImg;
+PImage badImg;
 PImage hand;
 PImage chevron;
-SoundFile ok;
-SoundFile no;
+SoundFile goodSound;
+SoundFile badSound;
 int fade = 0;
 int stateIndex;
+int frames = 0;
 
 public void setup() {
   
   rectMode(CENTER);
   imageMode(CENTER);
   textAlign(CENTER);
-  sign = loadImage("signify.png");
+  openSans = createFont("Open Sans", 64, true);
+  textFont(openSans);
+  goodImg = loadImage("ok.png");
+  badImg = loadImage("no.png");
   hand = loadImage("hand.png");
   chevron = loadImage("chevron.png");
-  ok = new SoundFile(this, "ok.wav");
-  no = new SoundFile(this, "no.wav");
+  goodSound = new SoundFile(this, "ok.wav");
+  badSound = new SoundFile(this, "no.wav");
 }
 
 public void draw() {
   translate(width/2, height/2);
   background(92, 147, 237);
+
+  frames++;
+  if (frames < 51) {fade += 5;}
 
   switch (stateIndex) {
     case 0:
@@ -50,58 +59,41 @@ public void draw() {
       buyState(123.45f);
       break;
     case 2:
-      endState("ok");
+      endState(false);
       break;
     default:
       break;
   }
-  /*
-  noStroke();
-  image(sign, shift, 0, 960, 480);
-  fill(92, 147, 237);
-  rect(550, 5, 480, 480);
-  rect(-550, 5, 480, 480);
-  fill(50, 50, 50, fade);
-  if (frameCount < 128) {fade += 5;}
-  textSize(64);
-  text("Betal med Kinetix™", 0, -height/2*0.75);
-  tint(255, fade);
-  image(hand, shift2, cos(frameCount)*10);
-  */
 }
 
 public void initState() {
-  if (frameCount < 51) {fade += 5;}
   tint(255, fade);
-  image(hand, 0, cos(frameCount)*15);
-  fill(0, 0, 0, fade);
+  image(hand, 0, cos(frames)*15);
+  fill(255, fade);
+  textAlign(CENTER);
   textSize(64);
   text("Betal med Kinetix™", 0, -340);
 }
 
 public void buyState(float price) {
   textAlign(LEFT, CENTER);
-  fill(255, 255, 255, 150);
+  fill(255, fade-150);
   textSize(48);
   text("At betale: ", -300, -50);
-  fill(255);
+  fill(255, fade);
   textSize(36);
   text(price + "Kr.", -300, 0);
-  tint(255);
-  image(chevron, 0, 250, 300, 300);
+  tint(255, fade);
+  image(chevron, 0, 250+cos(frames)*15, 300, 300);
 }
 
-public void endState(String arg) {
-  fill(92, 147, 237);
+public void endState(boolean succ) {
+  tint(255, fade);
   noStroke();
-  if (arg == "ok") {
-    image(sign, 173, 0, 600, 300);
-    rect(360, 5, 360, 360);
-  } else if (arg == "no") {
-    image(sign, -173, 0, 600, 300);
-    rect(-360, 5, 360, 360);
+  if (succ) {
+    image(goodImg, 0, 0);
   } else {
-    print("ERROR: desired state defined wrong");
+    image(badImg, 0, 0);
   }
 }
 
@@ -109,9 +101,13 @@ public void keyPressed() {
   switch (keyCode) {
     case 37:
       stateIndex--;
+      frames = 0;
+      fade   = 0;
       break;
     case 39:
       stateIndex++;
+      frames = 0;
+      fade   = 0;
       break;
     default:
       break;
