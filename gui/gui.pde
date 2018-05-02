@@ -29,6 +29,7 @@ void setup() {
 void draw() {
   translate(width/2, height/2);
   background(92, 147, 237);
+  noStroke();
 
   frames++;
   if (frames < 51) {fade += 5;}
@@ -74,7 +75,7 @@ void buyState(float price) {
 void endState(boolean succ) {
   textAlign(CENTER);
   tint(255, fade);
-  noStroke();
+  fill(255, fade);
   if (succ) {
     text("Tak fordi du brugte Kinetix", 0, -100);
     image(goodImg, 0, 100, 250, 250);
