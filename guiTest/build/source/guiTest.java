@@ -18,6 +18,7 @@ public class guiTest extends PApplet {
 int frames = 0;
 int fade   = 0;
 int state  = -1;
+int gestureIndex = 5;
 
 // arrays
 String[] gestures = {
@@ -36,15 +37,20 @@ PFont openSans;
 PImage goodSign;
 PImage badSign;
 PImage hand;
+PImage nfc;
+PImage k;
 
 public void setup() {
   
+  frameRate(60);
 
   // asset loading
   openSans = createFont("Open Sans", 64, true);
   goodSign = loadImage("good.png");
   badSign  = loadImage("bad.png");
   hand     = loadImage("hand.png");
+  nfc      = loadImage("nfc.png");
+  k        = loadImage("k.png");
 
   textFont(openSans, 48);
   textAlign(CENTER);
@@ -64,29 +70,36 @@ public void draw() {
   // header
   fill(255, fade);
   textSize(64);
-  text(header1, 0, -120);
+  text(header1, 0, -280);
 
   // sub-header
   fill(255, fade-50);
   textSize(48);
-  text(header2, 0, -60);
+  text(header2, 0, -220);
 
   // image
   tint(255, fade);
   switch(state) {
     case 0:
-      // image(hand, 0, 100, 300, 300);
+      image(k, 0, 0, 300, 300);
       break;
     case 1:
-      image(hand, 0, 140, 300, 300);
+      image(nfc, 0, 0, 300, 300);
+      break;
     case 2:
-      image(hand, 0, 140, 300, 300);
+      image(hand, 0, 0, 300, 300);
       break;
     case 3:
-      image(goodSign, 0, 140, 300, 300);
+      gestureImg[gestureIndex] = loadImage(gestures[gestureIndex]);
+      image(gestureImg[gestureIndex], 0, 0, 425, 425);
+      image(goodSign, 0, 300, 100, 100);
       break;
     case 4:
-      image(badSign, 0, 140, 300, 300);
+      gestureImg[gestureIndex] = loadImage(gestures[gestureIndex]);
+      image(gestureImg[gestureIndex], 0, 0, 425, 425);
+      image(badSign, 0, 300, 100, 100);
+      break;
+    case 5:
       break;
     default:
       break;
