@@ -2,6 +2,7 @@
 // *****************
 // *** LIBRARIES ***
 // *****************
+
 import de.voidplus.leapmotion.*;
 import oscP5.*;
 import netP5.*;
@@ -17,7 +18,7 @@ PImage chevron;
 SoundFile goodSound;
 SoundFile badSound;
 int fade = 0;
-int stateIndex;
+int stateIndex; // NB: index variable for the GUI
 int frames = 0;
 int currentClass;
 
@@ -36,7 +37,7 @@ String currentClass = "42";
 // *************
 
 void setup() {
-  // size(800, 500);          NB: deprecated momentarily
+  // size(800, 500);      NB: deprecated momentarily
   // background(255);
 
   // GUI shit
@@ -99,7 +100,7 @@ void initState() {
   text("Betal med Kinetix™", 0, -340);
 }
 
-void buyState(float price) {
+void nfcState(float price) {
   textAlign(LEFT, CENTER);
   fill(255, fade-150);
   textSize(48);
@@ -108,9 +109,17 @@ void buyState(float price) {
   textSize(36);
   text(price + "Kr.", -300, 0);
   textAlign(CENTER);
-  text("Verificér nu", 0, 150);
+  text("Verificér med wearable", 0, 150);
   tint(255, fade);
-  image(chevron, 0, 275+cos(frames)*15, 300, 300);
+  throbber(0, 250);
+}
+
+void gestureState() {
+  textAlign(CENTER);
+  fill(255, fade);
+  text("Succes! Verificér med fagt", 0, 50);
+  tint(255, fade);
+  throbber(0, 150);
 }
 
 void endState(boolean succ) {
@@ -121,7 +130,7 @@ void endState(boolean succ) {
     text("Tak fordi du brugte Kinetix", 0, -100);
     image(goodImg, 0, 100, 250, 250);
   } else {
-    text("Fejl - prøv igen", 0, -100);
+    text("Fejl", 0, -100);
     image(badImg, 0, 100, 250, 250);
   }
 }
@@ -142,7 +151,7 @@ void draw() {
       initState();
       break;
     case 1:
-      buyState(123.45);
+      nfcState(123.45);
       break;
     case 2:
       endState(true);
@@ -303,4 +312,28 @@ void keyPressed() {
     default:
       break;
   }
+}
+
+// function that resets the variables 'frames' and 'fade'
+// It will either decrement or increment the GUI state index,
+// depending on the argument it's given.
+void guiState(boolean forward) {
+  if (forward) {stateIndex++;} else {stateIndex--;}
+  frames = 0;
+  fade   = 0;
+}
+
+void throbber(int x, int y) {
+  translate(x, y);
+
+  // angle += 5;
+  float value = cos(radians(frames)) * 24.0;
+  for (float a = 0; a < 360; a += 22.5) {
+    float xOff = cos(radians(a)) * value+20;
+    float yOff = sin(radians(a)) * value+20;
+    fill(0, 255, 0);
+    ellipse(xOff, yOff, value/2, value/2);
+  }
+
+  translate(-x,-y);
 }

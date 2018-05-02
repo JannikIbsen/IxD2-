@@ -5,6 +5,7 @@ PImage goodImg;
 PImage badImg;
 PImage hand;
 PImage chevron;
+PImage throbber;
 SoundFile goodSound;
 SoundFile badSound;
 int fade = 0;
@@ -22,13 +23,14 @@ void setup() {
   badImg = loadImage("no.png");
   hand = loadImage("hand.png");
   chevron = loadImage("chevron.png");
+  throbber = loadImage("throbber.png");
   goodSound = new SoundFile(this, "ok.wav");
   badSound = new SoundFile(this, "no.wav");
 }
 
 void draw() {
   translate(width/2, height/2);
-  background(92, 147, 237);
+  background(92, 147, 237, 200);
   noStroke();
 
   frames++;
@@ -39,12 +41,16 @@ void draw() {
       initState();
       break;
     case 1:
-      buyState(123.45);
+      nfcState(123.45);
       break;
     case 2:
+      gestureState();
+      break;
+    case 3:
       endState(true);
       break;
     default:
+      initState();
       break;
   }
 }
@@ -67,9 +73,46 @@ void buyState(float price) {
   textSize(36);
   text(price + "Kr.", -300, 0);
   textAlign(CENTER);
-  text("Verificér nu", 0, 150);
+  text("Verificér med wearable", 0, 200);
   tint(255, fade);
-  image(chevron, 0, 275+cos(frames)*15, 300, 300);
+  throbber(0, 275);
+}
+
+void nfcState(float price) {
+  textAlign(LEFT, CENTER);
+  fill(255, fade-150);
+  textSize(48);
+  text("At betale: ", -300, -50);
+  fill(255, fade);
+  textSize(36);
+  text(price + "Kr.", -300, 0);
+  textAlign(CENTER);
+  text("Verificér med wearable", 0, 150);
+  tint(255, fade);
+  throbber(0, 250);
+}
+
+void gestureState() {
+  textAlign(CENTER);
+  fill(255, fade);
+  text("Succes! Verificér med fagt", 0, 50);
+  tint(255, fade);
+  throbber(0, 150);
+}
+
+void throbber(int x, int y) {
+  translate(x, y);
+
+  // angle += 5;
+  float value = cos(radians(frames)) * 24.0;
+  for (float a = 0; a < 360; a += 22.5) {
+    float xOff = cos(radians(a)) * value+20;
+    float yOff = sin(radians(a)) * value+20;
+    fill(0, 255, 0);
+    ellipse(xOff, yOff, value/2, value/2);
+  }
+
+  translate(-x,-y);
 }
 
 void endState(boolean succ) {
