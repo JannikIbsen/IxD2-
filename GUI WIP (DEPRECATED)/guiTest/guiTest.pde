@@ -1,19 +1,3 @@
-import processing.core.*; 
-import processing.data.*; 
-import processing.event.*; 
-import processing.opengl.*; 
-
-import java.util.HashMap; 
-import java.util.ArrayList; 
-import java.io.File; 
-import java.io.BufferedReader; 
-import java.io.PrintWriter; 
-import java.io.InputStream; 
-import java.io.OutputStream; 
-import java.io.IOException; 
-
-public class guiTest extends PApplet {
-
 // integer variables
 int frames = 0;
 int fade   = 0;
@@ -40,8 +24,8 @@ PImage hand;
 PImage nfc;
 PImage k;
 
-public void setup() {
-  
+void setup() {
+  fullScreen();
   frameRate(60);
 
   // asset loading
@@ -57,7 +41,7 @@ public void setup() {
   imageMode(CENTER);
 }
 
-public void draw() {
+void draw() {
 
   // variables
   frames++;
@@ -92,12 +76,12 @@ public void draw() {
     case 3:
       gestureImg[gestureIndex] = loadImage(gestures[gestureIndex]);
       image(gestureImg[gestureIndex], 0, 0, 425, 425);
-      image(goodSign, 0, 300, 100, 100);
+      image(goodSign, 0, 300, 150, 150);
       break;
     case 4:
       gestureImg[gestureIndex] = loadImage(gestures[gestureIndex]);
       image(gestureImg[gestureIndex], 0, 0, 425, 425);
-      image(badSign, 0, 300, 100, 100);
+      image(badSign, 0, 300, 150, 150);
       break;
     case 5:
       break;
@@ -106,7 +90,7 @@ public void draw() {
   }
 }
 
-public void stateHandler(int arg) {
+void stateHandler(int arg) {
 
   frames = 0;
   fade   = 0;
@@ -117,7 +101,7 @@ public void stateHandler(int arg) {
       header2 = "Betal med Kinetix™";
       break;
     case 1:
-      header1 = "" + 123.45f + "Kr."; // PRIS
+      header1 = "" + 123.45 + "Kr."; // PRIS
       header2 = "Verificér med armbånd";
       break;
     case 2:
@@ -136,17 +120,13 @@ public void stateHandler(int arg) {
   }
 }
 
-public void keyPressed() {
+boolean run = true;
+if (val != null && run) {
+  // gør ting
+  run = false;
+}
+
+void keyPressed() {
   if (keyCode == 37 && state >= 1) {stateHandler(--state);}
   if (keyCode == 39 && state <= 3) {stateHandler(++state);}
-}
-  public void settings() {  fullScreen(); }
-  static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "guiTest" };
-    if (passedArgs != null) {
-      PApplet.main(concat(appletArgs, passedArgs));
-    } else {
-      PApplet.main(appletArgs);
-    }
-  }
 }
