@@ -58,8 +58,8 @@ float timer = 0;
 
 
 void setup() {
-  // fullScreen(1); // screen res is 800 x 480
-  size(800,480);
+  fullScreen(1); // screen res is 800 x 480
+  // size(800,480);
 
   // asset loading
   openSans = createFont("Open Sans", 64, true);
