@@ -1,9 +1,30 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import de.voidplus.leapmotion.*; 
+import oscP5.*; 
+import netP5.*; 
+import processing.serial.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class design2_latest extends PApplet {
+
 // Sends 60 values
 
-import de.voidplus.leapmotion.*;
-import oscP5.*;
-import netP5.*;
-import processing.serial.*;
+
+
+
+
 
 //Variables GUI
 int frames = 0;
@@ -57,8 +78,8 @@ String val="";     // Data received from the serial port
 float timer = 0;
 
 
-void setup() {
-  fullScreen(1); // screen res is 800 x 480
+public void setup() {
+   // screen res is 800 x 480
 
   // asset loading
   openSans = createFont("Open Sans", 64, true);
@@ -91,24 +112,24 @@ void setup() {
 // ======================================================
 // 1. Callbacks
 
-void leapOnInit() {
+public void leapOnInit() {
   // println("Leap Motion Init");
 }
-void leapOnConnect() {
+public void leapOnConnect() {
   // println("Leap Motion Connect");
 }
-void leapOnFrame() {
+public void leapOnFrame() {
   // println("Leap Motion Frame");
 }
-void leapOnDisconnect() {
+public void leapOnDisconnect() {
   // println("Leap Motion Disconnect");
 }
-void leapOnExit() {
+public void leapOnExit() {
   // println("Leap Motion Exit");
 }
 
 
-void draw() {
+public void draw() {
   frames++;
   if (frames < 51) {
     fade += 5;
@@ -337,7 +358,7 @@ if ( veri == false) {
 }
 
 
-void sendJoints(ArrayList<PVector> joints, PVector point) {
+public void sendJoints(ArrayList<PVector> joints, PVector point) {
   OscMessage msg = new OscMessage("/wek/inputs");
 
   for (PVector joint : joints) {
@@ -350,7 +371,7 @@ void sendJoints(ArrayList<PVector> joints, PVector point) {
   oscP5.send(msg, dest);
 }
 
-ArrayList<PVector> getJoints(Finger thisFinger) {
+public ArrayList<PVector> getJoints(Finger thisFinger) {
   ArrayList<PVector> joints = new ArrayList();
 
   joints.add(thisFinger.getPositionOfJointTip());
@@ -361,7 +382,7 @@ ArrayList<PVector> getJoints(Finger thisFinger) {
   return joints;
 }
 
-ArrayList<PVector> getJoints(Hand thisHand) {
+public ArrayList<PVector> getJoints(Hand thisHand) {
   ArrayList<PVector> joints = new ArrayList();
 
   for (Finger finger : thisHand.getFingers()) {
@@ -373,14 +394,14 @@ ArrayList<PVector> getJoints(Hand thisHand) {
   return joints;
 }
 
-void oscEvent(OscMessage message) {
+public void oscEvent(OscMessage message) {
   if (message.checkAddrPattern("/wek/outputs") == true) {
     currentClass = (int) message.get(0).floatValue();
     // println(currentClass);
   }
 }
 
-void stateHandler(int arg) {
+public void stateHandler(int arg) {
   state = arg;
   frames = 0;
   // fade   = 0;
@@ -391,7 +412,7 @@ void stateHandler(int arg) {
     header2 = "Betal med Kinetix™";
     break;
   case 1:
-    header1 = "" + 123.45 + "Kr."; // PRIS
+    header1 = "" + 123.45f + "Kr."; // PRIS
     header2 = "Verificér med armbånd";
     break;
   case 2:
@@ -410,7 +431,7 @@ void stateHandler(int arg) {
   }
 }
 
-void keyReleased() {
+public void keyReleased() {
   switch(keyCode) {
     case 39:
       if (state <= 3) { stateHandler(++state); }
@@ -420,5 +441,15 @@ void keyReleased() {
       break;
     default:
       break;
+  }
+}
+  public void settings() {  fullScreen(1); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "design2_latest" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }
