@@ -44,9 +44,9 @@ String header2 = "";
 
 
 String[] gestures = {
-  "Peace.png", "A okay.png", "Ball.png", "FingerGun.png",
-  "HungerGames.png", "Spock.png", "Point.png", "Spreading.png",
-  "Surfing.png", "Thumb.png", "Rock and roll.png"
+  "peace_outline.png", "aokay_outline.png", "Ball.png", "fingergun_outline.png",
+  "hungergames_outline.png", "spock_outline.png", "point_outline.png", "Spreading.png",
+  "Surfing_outline.png", "thumb_outline.png", "rockandroll_outline.png"
 };
 PImage[] gestureImg = new PImage[gestures.length];
 
@@ -79,15 +79,16 @@ float timer = 0;
 
 
 public void setup() {
-   // screen res is 800 x 480
+  // fullScreen(1); // screen res is 800 x 480
+  
 
   // asset loading
   openSans = createFont("Open Sans", 64, true);
   goodSign = loadImage("good.png");
   badSign  = loadImage("bad.png");
   chevron  = loadImage("chevron.png");
-  hand     = loadImage("hand.png");
-  nfc      = loadImage("nfc_wip2.png");
+  hand     = loadImage("leap.png");
+  nfc      = loadImage("nfc.png");
   k        = loadImage("k.png");
 
   textFont(openSans, 48);
@@ -172,7 +173,7 @@ public void draw() {
     image(chevron, 0, 0, 100, 100);
     break;
   case 2:
-    image(hand, 0, 0, 250, 275);
+    image(hand, 0, 0, 350, 275);
     translate(300,0);
     rotate(radians(-90));
     image(chevron, 0, 0, 100, 100);
@@ -443,7 +444,7 @@ public void keyReleased() {
       break;
   }
 }
-  public void settings() {  fullScreen(1); }
+  public void settings() {  size(800,480); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "design2_latest" };
     if (passedArgs != null) {
