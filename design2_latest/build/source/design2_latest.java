@@ -79,8 +79,8 @@ float timer = 0;
 
 
 public void setup() {
-  // fullScreen(1); // screen res is 800 x 480
-  
+   // screen res is 800 x 480
+  // size(800,480);
 
   // asset loading
   openSans = createFont("Open Sans", 64, true);
@@ -444,7 +444,7 @@ public void keyReleased() {
       break;
   }
 }
-  public void settings() {  size(800,480); }
+  public void settings() {  fullScreen(1); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "design2_latest" };
     if (passedArgs != null) {
