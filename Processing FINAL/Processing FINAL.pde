@@ -1,4 +1,4 @@
-   // Sends 60 values 
+   // Sends 60 values
 
 import de.voidplus.leapmotion.*;
 import oscP5.*;
@@ -29,8 +29,8 @@ int prevcurrentClass;
 boolean timertrigger = false;
 
 String[] gestures = {
-  "peace_outline.png", "aokay_outline.png", "Ball.png", "fingergun_outline.png", 
-  "hungergames_outline.png", "spock_outline.png", "point_outline.png", "Spreading.png", 
+  "peace_outline.png", "aokay_outline.png", "Ball.png", "fingergun_outline.png",
+  "hungergames_outline.png", "spock_outline.png", "point_outline.png", "Spreading.png",
   "Surfing_outline.png", "thumb_outline.png", "rockandroll_outline.png"
 };
 
@@ -194,16 +194,16 @@ void draw() {
   println(timer);
 
   //Communication
-  if ( myPort.available() > 0) 
+  if ( myPort.available() > 0)
   {  // If data is available,
     val = myPort.readStringUntil('\n');         // read it and store it in val
     // println(val);
-  } 
+  }
 
 
   if (val!= null) {
     val = val.trim();
-    if (val.equals("1"))  
+    if (val.equals("1"))
     {
       //  timer ++;
       if (runtest == false) {
@@ -223,10 +223,10 @@ void draw() {
       }
 
       if ( veri == false) {
-        if ( currentClass == prevcurrentClass && timer > 100) 
+        if ( currentClass == prevcurrentClass && timer > 100)
         {
           switch(currentClass) {
-          case 1:  
+          case 1:
             println("Rock n Roll");  // Prints Rock n' Roll
             //  background(255, 0, 0);
             gestureIndex = 11;
@@ -235,7 +235,7 @@ void draw() {
             // delay(500);
             break;
 
-          case 2: 
+          case 2:
             println("Peace");  // Prints Peace
             //    background(0, 255, 0);
             gestureIndex = 10;
@@ -243,21 +243,21 @@ void draw() {
             veri = true;
             break;
 
-          case 3: 
+          case 3:
             println("Surf's up");  // Prints Surf's up
             //    background(0, 0, 255);
             gestureIndex = 8;
             stateHandler(3);
             veri = true;
             break;
-          case 4: 
+          case 4:
             println("Pistol");  // Prints Pistol
             //    background(255, 255, 0);
             gestureIndex = 3;
             stateHandler(4);
             veri = true;
             break;
-          case 5: 
+          case 5:
             println("Star Trek");  // Prints Star Trek
             //     background(0, 255, 255);
             gestureIndex = 5;
@@ -265,7 +265,7 @@ void draw() {
             veri = true;
             break;
 
-          case 6: 
+          case 6:
             println("A okay");  // Prints A-okay
             //   background(255, 255, 255);
             gestureIndex = 1;
@@ -273,21 +273,21 @@ void draw() {
             veri = true;
             //   delay(500);
             break;
-          case 7: 
+          case 7:
             println("Thumb side");  // Prints thumb side
             //     background(120, 255, 120);
             gestureIndex = 9;
             stateHandler(3);
             veri = true;
             break;
-          case 8: 
+          case 8:
             println("Point");  // Prints Point
             //   background(255, 120, 255);
             gestureIndex = 6;
             stateHandler(4);
             veri = true;
             break;
-          case 9: 
+          case 9:
             println("Hunger games");  // Prints Hunger games
             //  background(20, 60, 120);
             gestureIndex = 4;
@@ -310,7 +310,7 @@ void draw() {
 
   if (val!= null) {
     val = val.trim();
-    if (val.equals("2"))  
+    if (val.equals("2"))
     {
 
       if (runtest == false) {
@@ -329,10 +329,10 @@ void draw() {
 
 
       if ( veri == false) {
-        if ( currentClass == prevcurrentClass && timer > 100) 
+        if ( currentClass == prevcurrentClass && timer > 100)
         {
           switch(currentClass) {
-          case 1:  
+          case 1:
             println("Rock n Roll");  // Prints Rock n' Roll
             gestureIndex = 10;
             stateHandler(4);
@@ -340,52 +340,52 @@ void draw() {
             // delay(500);
             break;
 
-          case 2: 
+          case 2:
             println("Peace");  // Prints Peace
             gestureIndex = 10;
             stateHandler(3);
             veri = true;
             break;
 
-          case 3: 
+          case 3:
             println("Surf's up");  // Prints Surf's up
             gestureIndex = 8;
             stateHandler(4);
             veri = true;
             break;
-          case 4: 
+          case 4:
             println("Pistol");  // Prints Pistol
             gestureIndex = 3;
             stateHandler(4);
             veri = true;
             break;
-          case 5: 
+          case 5:
             println("Star Trek");  // Prints Star Trek
             gestureIndex = 5;
             stateHandler(4);
             veri = true;
             break;
 
-          case 6: 
+          case 6:
             println("WRONG GESTURE");  // Prints A-okay
             gestureIndex = 1;
             stateHandler(4);
             veri = true;
             //   delay(500);
             break;
-          case 7: 
+          case 7:
             println("Thumb side");  // Prints thumb side
             gestureIndex = 9;
             stateHandler(4);
             veri = true;
             break;
-          case 8: 
+          case 8:
             println("Point");  // Prints Point
             gestureIndex = 6;
             stateHandler(3);
             veri = true;
             break;
-          case 9: 
+          case 9:
             println("Hunger games");  // Prints Hunger games
             gestureIndex = 4;
             stateHandler(3);
@@ -405,7 +405,7 @@ void draw() {
 
   if (val!= null) {
     val = val.trim();
-    if (val.equals("3"))  
+    if (val.equals("3"))
     {
       //  timer ++;
       if (runtest == false) {
@@ -434,10 +434,10 @@ void draw() {
 
 
       if ( veri == false) {
-        if ( currentClass == prevcurrentClass && timer > 100) 
+        if ( currentClass == prevcurrentClass && timer > 100)
         {
           switch(currentClass) {
-          case 1:  
+          case 1:
             println("Rock n Roll");  // Prints Rock n' Roll
             //  background(255, 0, 0);
             gestureIndex = 10;
@@ -446,7 +446,7 @@ void draw() {
             // delay(500);
             break;
 
-          case 2: 
+          case 2:
             println("Peace");  // Prints Peace
             //    background(0, 255, 0);
             gestureIndex = 0;
@@ -454,21 +454,21 @@ void draw() {
             veri = true;
             break;
 
-          case 3: 
+          case 3:
             println("Surf's up");  // Prints Surf's up
             //    background(0, 0, 255);
             gestureIndex = 8;
             stateHandler(4);
             veri = true;
             break;
-          case 4: 
+          case 4:
             println("Pistol");  // Prints Pistol
             //    background(255, 255, 0);
             gestureIndex = 3;
             stateHandler(3);
             veri = true;
             break;
-          case 5: 
+          case 5:
             println("Star Trek");  // Prints Star Trek
             //     background(0, 255, 255);
             gestureIndex = 5;
@@ -476,7 +476,7 @@ void draw() {
             veri = true;
             break;
 
-          case 6: 
+          case 6:
             println("WRONG GESTURE");  // Prints A-okay
             //   background(255, 255, 255);
             gestureIndex = 1;
@@ -484,21 +484,21 @@ void draw() {
             veri = true;
             //   delay(500);
             break;
-          case 7: 
+          case 7:
             println("Thumb side");  // Prints thumb side
             //     background(120, 255, 120);
             gestureIndex = 9;
             stateHandler(4);
             veri = true;
             break;
-          case 8: 
+          case 8:
             println("Point");  // Prints Point
             //   background(255, 120, 255);
             gestureIndex = 6;
             stateHandler(4);
             veri = true;
             break;
-          case 9: 
+          case 9:
             println("Hunger games");  // Prints Hunger games
             //  background(20, 60, 120);
             gestureIndex = 4;
@@ -518,7 +518,7 @@ void draw() {
 
   if (val!= null) {
     val = val.trim();
-    if (val.equals("4"))  
+    if (val.equals("4"))
     {
 
       println("not right"); //print it out in the console
@@ -616,4 +616,9 @@ void stateHandler(int arg) {
   default:
     // don't even trip dog
   }
-} 
+}
+
+void keyPressed() {
+  if (keyCode == 37) {stateHandler(++state);}
+  if (keyCode == 39) {stateHandler(--state);}
+}
